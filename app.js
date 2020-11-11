@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 5000
+const port = process.env.PORT || 5000
 
 //CSV parse 
 const fs = require('fs');
@@ -14,7 +14,7 @@ app.get('/api/customers', (req, res) => {
     res.send(records)
 })
 
-app.listen(process.env.PORT || port, () => {
+app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
 

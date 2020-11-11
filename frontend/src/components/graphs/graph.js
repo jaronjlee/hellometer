@@ -345,7 +345,7 @@ class Graph extends PureComponent {
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom' }}/>
                 
-                    <YAxis dataKey="baveragetts" label={{ value: 'Average TTS at breakfast', angle: -90, position: 'insideLeft' }}/> 
+                    <YAxis dataKey="baveragetts" label={{ value: 'Average TTS (min) at breakfast', angle: -90, position: 'insideLeft' }}/> 
                     <Tooltip />
                     <Legend verticalAlign="top" height={36}/>
                     <Bar dataKey="baveragetts" fill="#8884d8" />
@@ -368,7 +368,7 @@ class Graph extends PureComponent {
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom' }}/>
                 
-                    <YAxis dataKey="laveragetts" label={{ value: 'Average TTS at lunch', angle: -90, position: 'insideLeft' }}/> 
+                    <YAxis dataKey="laveragetts" label={{ value: 'Average TTS (min) at lunch', angle: -90, position: 'insideLeft' }}/> 
                     <Tooltip />
                     <Legend verticalAlign="top" height={36}/>
                     <Bar dataKey="laveragetts" fill="#8884d8" />
@@ -391,7 +391,7 @@ class Graph extends PureComponent {
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom' }}/>
                 
-                    <YAxis dataKey="daveragetts" label={{ value: 'Average TTS at dinner', angle: -90, position: 'insideLeft' }}/> 
+                    <YAxis dataKey="daveragetts" label={{ value: 'Average TTS (min) at dinner', angle: -90, position: 'insideLeft' }}/> 
                     <Tooltip />
                     <Legend verticalAlign="top" height={36}/>
                     <Bar dataKey="daveragetts" fill="#8884d8" />
@@ -439,7 +439,7 @@ class Graph extends PureComponent {
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom' }}/>
                 
-                    <YAxis dataKey="daveragetts" label={{ value: 'Average TTS', angle: -90, position: 'insideLeft' }}/> 
+                    <YAxis dataKey="daveragetts" label={{ value: 'Average TTS (min)', angle: -90, position: 'insideLeft' }}/> 
                     <Tooltip />
                     <Legend verticalAlign="top" height={36}/>
                     <Bar dataKey="baveragetts" fill="#8884d8" />

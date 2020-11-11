@@ -9,6 +9,10 @@ const port = process.env.PORT || 5000
 // });
 // }
 
+app.get('/', (request, response) => {
+ response.send('Hello World!');
+ });
+
 //CSV parse 
 const fs = require('fs');
 const parse = require('csv-parse/lib/sync');

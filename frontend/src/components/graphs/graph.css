@@ -1,0 +1,42 @@
+.dropdown {
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  /* margin: 1%; */
+  width: 15%;
+  font-size: 14px;
+  box-sizing: border-box;
+  margin-top: -1px;
+  max-height: 200px;
+  /* overflow-y: auto; */
+  /* position: absolute;  */
+  /* top: 100%;
+  width: 100%; */
+  /* z-index: 1000; */
+  /* -webkit-overflow-scrolling: touch; */
+}
+
+.start-date {
+    font-size: 14px;
+    margin: 1%;
+}
+
+.end-date {
+    font-size: 14px;
+    margin: 1%;
+}
+
+.day-part {
+    font-size: 14px;
+    margin: 1%;
+}
+
+.input-box {
+    margin: 1%;
+    width: 60%;
+    height: 20%;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+}
+

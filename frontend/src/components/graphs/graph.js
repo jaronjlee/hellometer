@@ -37,9 +37,9 @@ class Graph extends PureComponent {
         this.lunchTTSGraph = this.lunchTTSGraph.bind(this)
         this.allTTSGraph = this.allTTSGraph.bind(this)
         this.allCustomersGraph = this.allCustomersGraph.bind(this)
-        // this.timeGraph = this.timeGraph.bind(this)
         this.filterDate = this.filterDate.bind(this)
         this._onSelect = this._onSelect.bind(this)
+        // this.timeGraph = this.timeGraph.bind(this)
     }
 
     async componentDidMount() {
@@ -131,11 +131,6 @@ class Graph extends PureComponent {
 
 
         //BREAKFAST
-
-        // const breakfastCustomers = this.state.customers.filter(function(obj) {
-        //     return obj.day_part == 1
-        // })
-
         const numBreakfastCustomers = breakfastCustomers.length
 
         let totalBreakfastTTS = 0;
@@ -210,31 +205,26 @@ class Graph extends PureComponent {
             let date = new Date(dayObj.utc*1000)
 
         })
-
-        // this.setState({filteredDaysInAugust: filteredDaysInAugust})
     }
 
     ttsGraph() {
         if (this.state.dayPart == "all-day") {
             return (
-                // <ResponsiveContainer>
-                    <BarChart
-                        // className="graph"
-                        width={675}
-                        height={500}
-                        data={this.state.filteredDaysInAugust}
-                        margin={{
-                        top: 40, right: 40, left: 40, bottom: 40
-                        }}
-                    >
-                    <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false}/>
-                        <XAxis dataKey="day" interval={0} label={{ value: 'Days in August', angle: 0, position: 'bottom', fill: 'white'  }}/>
-                    
-                        <YAxis dataKey="averagetts" textAnchor="middle" label={{ value: 'Average TTS (min)', angle: -90, position: 'insideLeft', fill: 'white',  dy: 50}}/> 
-                        <Tooltip />
-                        <Bar dataKey="averagetts" fill="#8884d8" />
-                    </BarChart>
-                // </ResponsiveContainer>
+                <BarChart
+                    width={675}
+                    height={500}
+                    data={this.state.filteredDaysInAugust}
+                    margin={{
+                    top: 40, right: 40, left: 40, bottom: 40
+                    }}
+                >
+                <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false}/>
+                    <XAxis dataKey="day" interval={0} label={{ value: 'Days in August', angle: 0, position: 'bottom', fill: 'white'  }}/>
+                
+                    <YAxis dataKey="averagetts" textAnchor="middle" label={{ value: 'Average TTS (min)', angle: -90, position: 'insideLeft', fill: 'white',  dy: 50}}/> 
+                    <Tooltip />
+                    <Bar dataKey="averagetts" fill="#8884d8" />
+                </BarChart>
             );
         }
     }

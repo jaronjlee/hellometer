@@ -24,7 +24,7 @@ class Graph extends PureComponent {
             averageBreakfastTTS: 0,
             averageLunchTTS: 0,
             averageDinnerTTS: 0,
-            dayPart: "combined"
+            dayPart: "all-day"
         }
 
         this.handleAugust = this.handleAugust.bind(this)
@@ -215,7 +215,7 @@ class Graph extends PureComponent {
     }
 
     ttsGraph() {
-        if (this.state.dayPart == "combined") {
+        if (this.state.dayPart == "all-day") {
             return (
                 // <ResponsiveContainer>
                     <BarChart
@@ -240,7 +240,7 @@ class Graph extends PureComponent {
     }
 
     customersGraph() {
-        if (this.state.dayPart == "combined") {
+        if (this.state.dayPart == "all-day") {
             return (
                 // <ResponsiveContainer width={500} height="40%">
                     <BarChart
@@ -396,7 +396,7 @@ class Graph extends PureComponent {
     }
 
     allCustomersGraph() {
-        if (this.state.dayPart == "all") {
+        if (this.state.dayPart == "split") {
             return (
                 <BarChart
                     width={675}
@@ -420,7 +420,7 @@ class Graph extends PureComponent {
     }
 
     allTTSGraph() {
-        if (this.state.dayPart == "all") {
+        if (this.state.dayPart == "split") {
             return (
                 <BarChart
                     width={675}
@@ -486,7 +486,7 @@ class Graph extends PureComponent {
         }
 
         const options = [
-            'combined', 'all', 'breakfast', 'lunch', 'dinner'
+            'all-day', 'split', 'breakfast', 'lunch', 'dinner'
             ];
         const defaultOption = options[0];
 

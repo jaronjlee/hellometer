@@ -1,4 +1,4 @@
-# hellometer
+# Hellometer
 
-#Live link
+# Live link
 https://hellometer1.herokuapp.com/

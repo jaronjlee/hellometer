@@ -6,6 +6,15 @@
   /* background-color: #90CAF9;
   border-color: #90CAF9; */
 }
+.insights {
+  margin-top: 2%;
+  text-align: center;
+  color: #8884D8;
+  font-weight: 300;
+  font-size: 30px;
+  /* background-color: #90CAF9;
+  border-color: #90CAF9; */
+}
 
 .App-logo {
   height: 40vmin;

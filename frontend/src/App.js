@@ -15,6 +15,9 @@ function App() {
     <div className="top-bar">
       <h1 className="hellometer">Hellometer</h1>
       <Graph/>
+      <div className="insights">
+        {/* <span>Insights</span><br/> */}
+      </div>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React, {Component, PureComponent} from "react";
 import {
-  BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+  BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
 } from 'recharts';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -46,7 +46,6 @@ class Graph extends PureComponent {
         await fetch('/api/customers')
             .then(res => res.json())
             .then(customers => this.setState({customers: customers}, () => console.log('customers fetched...')))
-            // .then(customers => this.setState({customers: customers}, () => console.log('customers fetched...', customers)))
 
         await this.handleAugust()
         await this.filterDate()
@@ -69,7 +68,6 @@ class Graph extends PureComponent {
             let date = new Date(customer.first_seen_utc*1000);
             const time = moment(date).format("h:mm a")
 
-            // let day = parseInt(new Date(customer.first_seen_utc*1000).toString().slice(8,11))
             let tts = parseInt(customer.tts)
             let dayPart = parseInt(customer.day_part)
 
@@ -219,22 +217,24 @@ class Graph extends PureComponent {
     ttsGraph() {
         if (this.state.dayPart == "combined") {
             return (
-                <BarChart
-                    width={900}
-                    height={500}
-                    data={this.state.filteredDaysInAugust}
-                    margin={{
-                    top: 20, right: 30, left: 20, bottom: 30,
-                    }}
-                >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom' }}/>
-                
-                    <YAxis dataKey="averagetts" label={{ value: 'Average TTS (min)', angle: -90, position: 'insideLeft' }}/> 
-                    <Tooltip />
-                    <Legend verticalAlign="top" height={36}/>
-                    <Bar dataKey="averagetts" fill="#8884d8" />
-                </BarChart>
+                // <ResponsiveContainer>
+                    <BarChart
+                        // className="graph"
+                        width={675}
+                        height={500}
+                        data={this.state.filteredDaysInAugust}
+                        margin={{
+                        top: 40, right: 40, left: 40, bottom: 40
+                        }}
+                    >
+                    <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false}/>
+                        <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom', fill: 'white'  }}/>
+                    
+                        <YAxis dataKey="averagetts" textAnchor="middle" label={{ value: 'Average TTS (min)', angle: -90, position: 'insideLeft', fill: 'white',  dy: 50}}/> 
+                        <Tooltip />
+                        <Bar dataKey="averagetts" fill="#8884d8" />
+                    </BarChart>
+                // </ResponsiveContainer>
             );
         }
     }
@@ -242,22 +242,22 @@ class Graph extends PureComponent {
     customersGraph() {
         if (this.state.dayPart == "combined") {
             return (
-                <BarChart
-                    width={900}
-                    height={500}
-                    data={this.state.filteredDaysInAugust}
-                    margin={{
-                    top: 20, right: 30, left: 20, bottom: 30,
-                    }}
-                >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom' }}/>
-                
-                    <YAxis dataKey="customers" label={{ value: 'Number of customers per day', angle: -90, position: 'insideLeft' }}/> 
-                    <Tooltip />
-                    <Legend verticalAlign="top" height={36}/>
-                    <Bar dataKey="customers" fill="#8884d8" />
-                </BarChart>
+                // <ResponsiveContainer width={500} height="40%">
+                    <BarChart
+                        width={675}
+                        height={500}
+                        data={this.state.filteredDaysInAugust}
+                        margin={{
+                        top: 40, right: 40, left: 40, bottom: 40
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false}/>
+                        <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom', fill: 'white'  }}/>
+                    
+                        <YAxis dataKey="customers" label={{ value: 'Number of customers per day', angle: -90, position: 'insideLeft', fill: 'white',  dy: 50  }}/> 
+                        <Tooltip />
+                        <Bar dataKey="customers" fill="#8884d8" />
+                    </BarChart>
             );
         }
     }
@@ -266,19 +266,18 @@ class Graph extends PureComponent {
         if (this.state.dayPart == "breakfast") {
             return (
                 <BarChart
-                    width={900}
+                    width={675}
                     height={500}
                     data={this.state.filteredDaysInAugust}
                     margin={{
-                    top: 20, right: 30, left: 20, bottom: 30,
+                    top: 40, right: 40, left: 40, bottom: 40
                     }}
                 >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom' }}/>
+                    <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false}/>
+                    <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom', fill: 'white'  }}/>
                 
-                    <YAxis dataKey="bcustomers" label={{ value: 'Number of customers at breakfast', angle: -90, position: 'insideLeft' }}/> 
+                    <YAxis dataKey="bcustomers" label={{ value: 'Number of customers at breakfast', angle: -90, position: 'insideLeft', fill: 'white',  dy: 50  }}/> 
                     <Tooltip />
-                    <Legend verticalAlign="top" height={36}/>
                     <Bar dataKey="bcustomers" fill="#8884d8" />
                 </BarChart>
             );
@@ -289,19 +288,18 @@ class Graph extends PureComponent {
         if (this.state.dayPart == "lunch") {
             return (
                 <BarChart
-                    width={900}
+                    width={675}
                     height={500}
                     data={this.state.filteredDaysInAugust}
                     margin={{
-                    top: 20, right: 30, left: 20, bottom: 30,
+                    top: 40, right: 40, left: 40, bottom: 40
                     }}
                 >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom' }}/>
+                    <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false}/>
+                    <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom', fill: 'white'  }}/>
                 
-                    <YAxis dataKey="lcustomers" label={{ value: 'Number of customers at lunch', angle: -90, position: 'insideLeft' }}/> 
+                    <YAxis dataKey="lcustomers" label={{ value: 'Number of customers at lunch', angle: -90, position: 'insideLeft', fill: 'white',  dy: 50  }}/> 
                     <Tooltip />
-                    <Legend verticalAlign="top" height={36}/>
                     <Bar dataKey="lcustomers" fill="#8884d8" />
                 </BarChart>
             );
@@ -312,19 +310,18 @@ class Graph extends PureComponent {
         if (this.state.dayPart == "dinner") {
             return (
                 <BarChart
-                    width={900}
+                    width={675}
                     height={500}
                     data={this.state.filteredDaysInAugust}
                     margin={{
-                    top: 20, right: 30, left: 20, bottom: 30,
+                    top: 40, right: 40, left: 40, bottom: 40
                     }}
                 >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom' }}/>
+                    <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false}/>
+                    <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom', fill: 'white'  }}/>
                 
-                    <YAxis dataKey="dcustomers" label={{ value: 'Number of customers at dinner', angle: -90, position: 'insideLeft' }}/> 
+                    <YAxis dataKey="dcustomers" label={{ value: 'Number of customers at dinner', angle: -90, position: 'insideLeft', fill: 'white',  dy: 50  }}/> 
                     <Tooltip />
-                    <Legend verticalAlign="top" height={36}/>
                     <Bar dataKey="dcustomers" fill="#8884d8" />
                 </BarChart>
             );
@@ -335,19 +332,19 @@ class Graph extends PureComponent {
         if (this.state.dayPart == "breakfast") {
             return (
                 <BarChart
-                    width={900}
+                    className="bar-chart"
+                    width={675}
                     height={500}
                     data={this.state.filteredDaysInAugust}
                     margin={{
-                    top: 20, right: 30, left: 20, bottom: 30,
+                    top: 40, right: 40, left: 40, bottom: 40
                     }}
                 >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom' }}/>
+                    <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false}/>
+                    <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom', fill: 'white' }}/>
                 
-                    <YAxis dataKey="baveragetts" label={{ value: 'Average TTS (min) at breakfast', angle: -90, position: 'insideLeft' }}/> 
+                    <YAxis dataKey="baveragetts" label={{ value: 'Average TTS (min) at breakfast', angle: -90, position: 'insideLeft', fill: 'white',  dy: 50  }}/> 
                     <Tooltip />
-                    <Legend verticalAlign="top" height={36}/>
                     <Bar dataKey="baveragetts" fill="#8884d8" />
                 </BarChart>
             );
@@ -358,19 +355,18 @@ class Graph extends PureComponent {
         if (this.state.dayPart == "lunch") {
             return (
                 <BarChart
-                    width={900}
+                    width={675}
                     height={500}
                     data={this.state.filteredDaysInAugust}
                     margin={{
-                    top: 20, right: 30, left: 20, bottom: 30,
+                    top: 40, right: 40, left: 40, bottom: 40
                     }}
                 >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom' }}/>
+                    <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false}/>
+                    <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom', fill: 'white'  }}/>
                 
-                    <YAxis dataKey="laveragetts" label={{ value: 'Average TTS (min) at lunch', angle: -90, position: 'insideLeft' }}/> 
+                    <YAxis dataKey="laveragetts" label={{ value: 'Average TTS (min) at lunch', angle: -90, position: 'insideLeft', fill: 'white',  dy: 50  }}/> 
                     <Tooltip />
-                    <Legend verticalAlign="top" height={36}/>
                     <Bar dataKey="laveragetts" fill="#8884d8" />
                 </BarChart>
             );
@@ -381,19 +377,18 @@ class Graph extends PureComponent {
         if (this.state.dayPart == "dinner") {
             return (
                 <BarChart
-                    width={900}
+                    width={675}
                     height={500}
                     data={this.state.filteredDaysInAugust}
                     margin={{
-                    top: 20, right: 30, left: 20, bottom: 30,
+                    top: 40, right: 40, left: 40, bottom: 40
                     }}
                 >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom' }}/>
+                    <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false}/>
+                    <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom', fill: 'white'  }}/>
                 
-                    <YAxis dataKey="daveragetts" label={{ value: 'Average TTS (min) at dinner', angle: -90, position: 'insideLeft' }}/> 
+                    <YAxis dataKey="daveragetts" label={{ value: 'Average TTS (min) at dinner', angle: -90, position: 'insideLeft', fill: 'white',  dy: 50  }}/> 
                     <Tooltip />
-                    <Legend verticalAlign="top" height={36}/>
                     <Bar dataKey="daveragetts" fill="#8884d8" />
                 </BarChart>
             );
@@ -404,19 +399,18 @@ class Graph extends PureComponent {
         if (this.state.dayPart == "all") {
             return (
                 <BarChart
-                    width={1000}
+                    width={675}
                     height={500}
                     data={this.state.filteredDaysInAugust}
                     margin={{
-                    top: 20, right: 30, left: 20, bottom: 30,
+                    top: 40, right: 40, left: 40, bottom: 40,
                     }}
                 >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom' }}/>
+                    <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false}/>
+                    <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom', fill: 'white'  }}/>
                 
-                    <YAxis dataKey="lcustomers" label={{ value: 'Number of Customers', angle: -90, position: 'insideLeft' }}/> 
+                    <YAxis dataKey="lcustomers" label={{ value: 'Number of Customers', angle: -90, position: 'insideLeft', fill: 'white',  dy: 50  }}/> 
                     <Tooltip />
-                    <Legend verticalAlign="top" height={36}/>
                     <Bar dataKey="bcustomers" fill="#8884d8" />
                     <Bar dataKey="lcustomers" fill="#F093DB" />
                     <Bar dataKey="dcustomers" fill="#6DE0E8" />
@@ -429,19 +423,19 @@ class Graph extends PureComponent {
         if (this.state.dayPart == "all") {
             return (
                 <BarChart
-                    width={1000}
+                    width={675}
                     height={500}
                     data={this.state.filteredDaysInAugust}
                     margin={{
-                    top: 20, right: 30, left: 20, bottom: 30,
+                    top: 30, right: 40, left: 40, bottom: 40,
                     }}
                 >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom' }}/>
+                    <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false}/>
+                    <XAxis dataKey="day" label={{ value: 'Days in August', angle: 0, position: 'bottom', fill: 'white'   }}/>
                 
-                    <YAxis dataKey="daveragetts" label={{ value: 'Average TTS (min)', angle: -90, position: 'insideLeft' }}/> 
+                    <YAxis dataKey="daveragetts" label={{ value: 'Average TTS (min)', angle: -90, position: 'insideLeft', fill: 'white',  dy: 50   }}/> 
                     <Tooltip />
-                    <Legend verticalAlign="top" height={36}/>
+                    {/* <Legend verticalAlign="top" height={36}/> */}
                     <Bar dataKey="baveragetts" fill="#8884d8" />
                     <Bar dataKey="laveragetts" fill="#F093DB" />
                     <Bar dataKey="daveragetts" fill="#6DE0E8" />
@@ -504,30 +498,32 @@ class Graph extends PureComponent {
 
         return (
             <div>
-                <div className="start-date">
-                    Start Date<DatePicker className="input-box" selected={this.state.startDate} onChange={date => this.setStartDate(date)} />
-                </div>
-                <div className="end-date">
-                    End Date<DatePicker className="input-box" selected={this.state.endDate} onChange={date => this.setEndDate(date)} />
-                </div>
-                
-                <div className="day-part">
-                    <div>Day Part</div>
+                <div className="buttons">
                     <div>
+                        <div className="start-date">START DATE</div>
+                        <DatePicker className="input-box" selected={this.state.startDate} onChange={date => this.setStartDate(date)} />
+                    </div>
+                    <div>
+                        <div className="day-part">END DATE</div>
+                        <DatePicker className="input-box" selected={this.state.endDate} onChange={date => this.setEndDate(date)} />
+                    </div>
+                    <div >
+                        <div className="day-part">DAY PART</div>
                         <Dropdown className="dropdown" options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />
                     </div>
                 </div>
-
-                {this.ttsGraph()}
-                {this.breakfastTTSGraph()}
-                {this.lunchTTSGraph()}
-                {this.dinnerTTSGraph()}
-                {this.customersGraph()}
-                {this.bCustomersGraph()}
-                {this.lCustomersGraph()}
-                {this.dCustomersGraph()}
-                {this.allTTSGraph()}
-                {this.allCustomersGraph()}
+                <div className="graphs">
+                    <div className="graph">{this.ttsGraph()}</div>
+                    <div className="graph">{this.breakfastTTSGraph()}</div>
+                    <div className="graph">{this.lunchTTSGraph()}</div>
+                    <div className="graph">{this.dinnerTTSGraph()}</div>
+                    <div className="graph">{this.customersGraph()}</div>
+                    <div className="graph">{this.bCustomersGraph()}</div>
+                    <div className="graph">{this.lCustomersGraph()}</div>
+                    <div className="graph">{this.dCustomersGraph()}</div>
+                    <div className="graph">{this.allTTSGraph()}</div>
+                    <div className="graph">{this.allCustomersGraph()}</div>
+                </div>
             </div>
             );
     }   
